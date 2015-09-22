@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div class = "container">
+        <div class="panel panel-default">
+            <div class="panel-heading">NFL Roster</div>
+            <div class="panel-body">
+                <div class="player-roster">
+                    
+                </div>
+                <div class="player-form">
+                    <form>
+                        <div id='loader'><img src="spinner.gif" /></div>
+                        <div class="panel panel-default">
+                            <div class="panel-title" align="center">
+                                <h4>Player Information</h4>
+                            </div>
+                            <div class="panel-body">
+                                <input id="nameInput" type="text" placeholder="Player Name" name="Player Name:" />
+                            </div>
+
+                            <div class="panel-body">
+                                <input id="positionInput" type="text" placeholder="Player Position" name="Player Position:" />
+                            </div>
+                            <div class="panel-body">
+                                <input id="numberInput" type="text" placeholder="Player Number" name="Player Number:" />
+                            </div>
+                            <div>
+                                <input id="playerImageUrl" type="url" hidden />
+                                <img id="playerImage" src="" alt="current player image" class="hidden" />
+                            </div>
+                            <select id="selectTeam">
+                                <option value="None">None</option>
+                            </select>
+                            <select id="selectName">
+                                <option value="None">None</option>
+                            </select>
+                            <div class="panel-body">
+                                <span><button type="button" class="btn btn-default">Add Player</button></span>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="app.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
