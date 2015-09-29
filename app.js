@@ -84,7 +84,7 @@ function playerController() {
 
     $('#selectTeam').on('change', function () {
         var selectedTeam = $(this).val();
-        var requestedTeam = ps.getPlayersByTeam(selectedTeam);
+        var requestedTeam = ps.getPlayersByTeam(selectedTeam); //passes in select team value to the getPlayersByTeam function that returns that player object from the array
         addPlayersToPlayerSelect(requestedTeam)
     })
 
@@ -97,7 +97,7 @@ function playerController() {
         }
     }
 
-    $('#selectName').on('change', function () {
+    $('#selectName').on('change', function (){
 
         var playerID = $(this).val();
         var player = ps.getPlayersById(playerID); // player gets set to the returned value of the function that we set it equal to ps.getPlayersByID
@@ -117,6 +117,14 @@ function playerController() {
     })
 };
 
+$(function () {
+    $("#progressbar").progressbar({
+        value: 0
+    });
+});
+
+
+
 
    //for (var i = 0; i < sfPlayerObject.length; i++) {
    //    var player = sfPlayerObject[i];
@@ -135,7 +143,12 @@ function playerController() {
    
    //ps.loadPlayersByName();
 
-$('button').click(function() //addPlayer function
+$('#buttonAdd').click(addPlayer);
+var progressTotal = 0;
+var maxPlayers = 20;
+var progressStep = 5;
+var progressTotal = (1 / maxPlayers * 100);
+function addPlayer() //addPlayer function
 {
     var nameToAdd = $('#nameInput').val();
     var positionToAdd = $('#positionInput').val();
@@ -144,7 +157,7 @@ $('button').click(function() //addPlayer function
     if (!pic) {
         pic = 'http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/'
     } 
-    var html = '<div class="player-card">' +
+    var html = '<div class="player-card" style = "display:inline-block; border:10px solid black">' +
                 '<div id="player-card-image">' +
                 '<img src = "'+ pic +'"/>' +
                 '<p>Player Name:' + nameToAdd + '</p>' +
@@ -153,13 +166,22 @@ $('button').click(function() //addPlayer function
                 '<button class = "btn btn-info remove-player">Remove Player</button></div>'
                 
     $('.player-roster').append(html);
-   // var newPlayer = PlayerFactory.createPlayer(nameToAdd, positionToAdd, numberToAdd); //input data is sent to createPlayer method on player factory
+    progressTotal = progressTotal+ progressStep;
+    console.log(progressTotal);
+    console.log('Progress sum is ' + progressTotal);
+    $("#progressbar").progressbar("value", progressTotal);
+   
+    // var newPlayer = PlayerFactory.createPlayer(nameToAdd, positionToAdd, numberToAdd); //input data is sent to createPlayer method on player factory
     $('.remove-player').on('click', function () {
-         $(this).parent().remove();
+        $(this).parent().remove();
         //alert('this remove works');
 
     });
-});
+    
+}
+
+
+
 //function Player(playerName, playerPosition, playerNumber, playerID) //player constructor to call when we want to NEW UP A PLAYER
 //{
 //    this.playerName = playerName;
